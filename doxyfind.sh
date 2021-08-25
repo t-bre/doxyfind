@@ -39,4 +39,4 @@ echo "Shortest path to doxyfile: " $SHORTEST
 
 # go to directory and run doxygen
 cd $SHORTEST
-# doxygen
+doxygen
