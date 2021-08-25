@@ -5,7 +5,7 @@
 - Runs doxygen in the corresponding directory
 
 ## Installation
-Clone somewhere:
+Clone somewhere such as `/usr/bin`:
 ```
 cd <installation directory>
 git clone https://github.com/t-bre/doxyfind
@@ -13,6 +13,7 @@ git clone https://github.com/t-bre/doxyfind
 Add this to your bash profile, replacing `<installation directory>` with the directory you cloned the repo into:
 ```
 export PATH="<installation directory>/doxyfind:$PATH"
+alias doxyfind="doxyfind.sh"
 ```
 
 ## Usage
