@@ -22,3 +22,4 @@ Anywhere inside a git repo:
 ```bash
 doxyfind
 ```
+Tested on macOS Big Sur with zsh.
