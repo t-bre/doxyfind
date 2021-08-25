@@ -17,6 +17,7 @@ alias doxyfind="doxyfind.sh"
 ```
 
 ## Usage
+Anywhere inside a git repo:
 ```bash
 doxyfind
 ```
