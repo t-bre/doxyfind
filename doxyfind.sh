@@ -14,12 +14,12 @@
 REPOROOT=$(git rev-parse --show-toplevel)
 
 if [ $? -ne 0 ]; then
-    exit $?
+    exit $? # not a git repo
 fi
 
 echo "Repo root folder: " $REPOROOT
 
-# use find to locate doxyfiles in the repo
+# locate doxyfiles in repo
 DOXYFILES=$(find $REPOROOT -name Doxyfile)
 
 if [ -z $DOXYFILES ]; then
@@ -27,24 +27,25 @@ if [ -z $DOXYFILES ]; then
     exit $?
 fi
 
-# assume first path is the shortest
+# assume first path to a doxyfile is the shortest
+# strip "Doxyfile" from path to get containing directory
 read TMP __ <<< $DOXYFILES
 SHORTEST=$(dirname $TMP)
 
-# loop through filenames
+# loop through paths to doxyfiles
 for FILE in $DOXYFILES
 do
-    # strip doxyfile from name to get path
+    # strip "Doxyfile" from path to get containing directory
     DIR=$(dirname $FILE)
     
-    # check if this path is shorter than the current shortest
+    # check if directory path is shorter than the current shortest
     if [ ${#DIR} -lt ${#SHORTEST} ]
     then
         SHORTEST=$DIR
     fi
 done
 
-# now we have the shortest path to a doxyfile in this repo
+# now we have the shortest path to a directory containing a doxyfile in this repo
 echo "Shortest path to doxyfile: " $SHORTEST
 
 # go to directory and run doxygen
