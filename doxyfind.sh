@@ -12,10 +12,20 @@
 
 # find the root of the current git repo
 REPOROOT=$(git rev-parse --show-toplevel)
+
+if [ $? -ne 0 ]; then
+    exit $?
+fi
+
 echo "Repo root folder: " $REPOROOT
 
 # use find to locate doxyfiles in the repo
 DOXYFILES=$(find $REPOROOT -name Doxyfile)
+
+if [ -z $DOXYFILES ]; then
+    echo "No doxyfiles in repo"
+    exit $?
+fi
 
 # assume first path is the shortest
 read TMP __ <<< $DOXYFILES
